@@ -1,0 +1,4 @@
+Lecture - 1
+-----------
+i) Initialized the project
+ii) 
