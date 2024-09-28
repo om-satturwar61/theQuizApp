@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const quizzes = require('./db/quizzes');
+const quizRouter = require('./router/quiz.router');
 
 const app = express();
 app.use(cors());
@@ -11,9 +12,7 @@ app.get('/', (req, res) => {
     res.send(`Server is live!`);
 });
 
-app.get('/quiz', (req, res) => {
-    res.send(quizzes.data);
-})
+app.use('/quiz', quizRouter);
 
 app.listen(process.env.port || port, () => {
     console.log(`Server live on port ${port}`);
