@@ -30,5 +30,5 @@ app.post('/auth/login', (req, res) => {
 });
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server live on port ${port}`);
+    console.log(`Server live on port ${PORT}`);
 });
