@@ -3,10 +3,11 @@ const cors = require('cors');
 const quizzes = require('./db/quizzes');
 const quizRouter = require('./router/quiz.router');
 const userdata = require('./db/users');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
 const PORT = 3000;
 
@@ -21,7 +22,8 @@ app.post('/auth/login', (req, res) => {
     console.log({username, password});
     const isUserVerified = userdata.users.some(user => user.username === username && user.password === password)
     if (isUserVerified){
-        res.json({message: "User Verified"});
+        const token = jwt.sign({id: username}, process.env.SECRET_KEY);
+        res.json({username, token, message: "User Verified"});
     }
     else{
         res.status(401).json({message: "Invalid Credentials"});
