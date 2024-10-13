@@ -20,7 +20,7 @@ app.use('/quiz', quizRouter);
 
 app.use('/auth/login', loginRouter);
 
-app.user('/auth/signup', signupRouter);
+app.use('/auth/signup', signupRouter);
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server live on port ${PORT}`);
