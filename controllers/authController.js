@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const userdata = require('../db/users');
+const uuid = require('uuid');
 
 const signupHandler = (req, res) => {
     const {username, password} = req.body;
