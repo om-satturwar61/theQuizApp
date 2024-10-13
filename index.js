@@ -4,7 +4,7 @@ const quizzes = require('./db/quizzes');
 const quizRouter = require('./router/quiz.router');
 const userdata = require('./db/users');
 const jwt = require('jsonwebtoken');
-const loginRouter = require('./router/auth.router');
+const {loginRouter, signupRouter} = require('./router/auth.router');
 
 const app = express();
 app.use(cors());
@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
 app.use('/quiz', quizRouter);
 
 app.use('/auth/login', loginRouter);
+
+app.user('/auth/signup', signupRouter);
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server live on port ${PORT}`);
