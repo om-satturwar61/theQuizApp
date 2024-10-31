@@ -30,4 +30,15 @@ const loginHandler = (req, res) => {
     }
 }
 
-module.exports = {loginHandler, signupHandler};
+const authVerify = (req, res, next) => {
+    const token = req.headers.authorization;
+    try {
+        const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
+        req.user = {userId : decodedToken.id }
+        return next();
+    }catch(err){
+        console.error(`Error from Server: ${JSON.stringify(err)}`);
+    }
+}
+
+module.exports = {loginHandler, signupHandler, authVerify};
